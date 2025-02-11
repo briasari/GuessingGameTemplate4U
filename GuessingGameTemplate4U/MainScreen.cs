@@ -31,6 +31,8 @@ namespace GuessingGameTemplate4U
 
             //TODO add guess to List of guesses on Form1
 
+            Form1.guesses.Add(guess);
+
 
             if (guess < rand)
             {
@@ -48,6 +50,19 @@ namespace GuessingGameTemplate4U
 
                 //TODO close this screen and open a Results Screen (you need to create this)
 
+                //make button find out which form it's on
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                //add instance of result screen
+                ResultScreen rs = new ResultScreen();
+
+                //centre
+                rs.Location = new Point((f.Width - rs.Width) / 2, (f.Height - rs.Height) / 2);
+
+                //uc and focus
+                f.Controls.Add(rs);
+                rs.Focus();
             }
 
             inputBox.Text = "";
